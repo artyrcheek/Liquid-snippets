@@ -1,0 +1,36 @@
+{% assign modal_page = pages[modal] %}
+
+<button type="button" class="{% if button_class != blank %}show-modal-btn {{button_class}}{% else %}show-modal-btn btn{% endif %}" for="{{modal_page.id}}" >
+  {{modal_page.title}}
+</button>
+
+<div class="modal" id="{{modal_page.id}}">
+  <a href="#close" class="modal-overlay" aria-label="Close"></a>
+  <div class="modal-container">
+    <div class="modal-header">
+      <a href="#close" class="btn btn-clear float-right close-modal" aria-label="Close"></a>
+      <div class="modal-title h5">{{modal_page.title}}</div>
+    </div>
+    <div class="modal-body pt-0">
+      <div class="content">
+        {{modal_page.content}}
+      </div>
+    </div>
+    {% comment %}
+    <div class="modal-footer">
+      ...
+    </div>
+    {% endcomment %}
+  </div>
+</div>
+
+<script>
+  $(".close-modal , .modal-overlay").on("click", function() {
+    $(this).closest('.modal').removeClass('active');
+  });
+
+  $(".show-modal-btn").on("click", function() {
+    modalId = $(this).attr('for');
+    $('.modal#' + modalId).addClass('active');
+  });
+</script>
