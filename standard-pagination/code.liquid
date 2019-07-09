@@ -1,0 +1,22 @@
+{% if paginate.pages > 1 %}
+  {% if theme-pagination == 'hr' %}
+    <hr>
+  {% endif %}
+  <div class="pagination">
+    {% if paginate.previous.is_link %}
+      <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
+    {% endif %}
+    <div class="page-numbers">
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <a href="{{part.url}}">{{part.title}}</a>
+        {% else %}
+          <a class="page-current" href="{{part.url}}">{{part.titlr}}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if paginate.next.is_link %}
+      <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,8 @@
+{%- assign output_string = "" -%}
+{%- for tag in tag-finder.tags -%}
+  {%- if tag contains look_for -%}
+    {%- assign output_string = output_string | append: tag | remove_first: look_for | append: "~|~" -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign output_string = output_string | split : "~|~" | join: ", " -%}
+{{-output_string-}}
