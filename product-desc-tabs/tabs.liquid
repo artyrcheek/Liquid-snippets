@@ -1,0 +1,19 @@
+{% assign split_product_description = product.description | split: "<h1>" %}
+
+{% for split_desc in split_product_description %}
+  {% assign desc_split_h1 = split_desc | split: "</h1>" %}
+  {% assign desc_split_h1_size = desc_split_h1 | size %}
+  {% if desc_split_h1_size == 2 %}
+    <h4>{{desc_split_h1 | first}}</h4>
+    <div class="">
+      {{desc_split_h1 | last}}
+    </div>
+  {% elsif desc_split_h1_size == 1 %}
+    <h4>Only content</h4>
+    <div class="">
+      {{desc_split_h1 | last}}
+    </div>
+  {% else %}
+    <p>???</p>
+  {% endif %}
+{% endfor %}
